@@ -1,0 +1,59 @@
+﻿@model lubnamaster.Models.Itemeoffered
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Itemeoffered</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityLeft)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityLeft)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Item_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ColorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

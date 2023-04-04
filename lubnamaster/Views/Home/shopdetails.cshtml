@@ -1,0 +1,584 @@
+﻿
+
+@{
+    ViewBag.Title = "get";
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+
+
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__right__auth">
+
+                    </div>
+                    <div class="header__right">
+
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Breadcrumb Begin -->
+
+
+
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/Home/Home"><i class="fa fa-home"></i> Home</a>
+                        <a href="/Home/Items">@Model.m.Gender</a>
+                        <span>@Model.m.Item_Name</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Product Details Section Begin -->
+    <form action="@Url.Action("AddToCart", "Home")" method="post">
+        <input type="hidden" name="itemId" value="@Model.m.itemId" />
+        <section class="product-details spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="product__details__pic">
+                            <div class="product__details__pic__left product__thumb nice-scroll">
+                                <a class="pt active" href="#product-1">
+                                    <img src="~/Images/@Model.m.Image1" alt="">
+                                </a>
+                                <a class="pt" href="#product-2">
+                                    <img src="~/Images/@Model.m.Image2" alt="">
+                                </a>
+                                <a class="pt" href="#product-3">
+                                    <img src="~/Images/@Model.m.Image3" alt="">
+                                </a>
+                                <a class="pt" href="#product-4">
+                                    <img ssrc="~/Images/@Model.m.Image4" alt="">
+                                </a>
+                            </div>
+                            <div class="product__details__slider__content">
+                                <div class="product__details__pic__slider owl-carousel">
+                                    <img data-hash="product-1" class="product__big__img" src="~/Images/@Model.m.Image1" alt="">
+                                    <img data-hash="product-2" class="product__big__img" ssrc="~/Images/@Model.m.Image2" alt="">
+                                    <img data-hash="product-3" class="product__big__img" src="~/Images/@Model.m.Image3" alt="">
+                                    <img data-hash="product-4" class="product__big__img" ssrc="~/Images/@Model.m.Image4" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product__details__text">
+                            <h3>@Model.m.Item_Name </h3>
+                            <p>
+                                @Model.m.Item_Description
+                            </p>
+                            <div class="quantity">
+                                <span>Quantity:</span>
+                                <div class="pro-qty">
+                                    @foreach (var itemOffered in Model.s)
+                                    {
+                                        <input type="number" class="form-control" name="quantity" id="quantity" value="1" min="1" max="@itemOffered.QuantityLeft" required />
+
+                                        <input type="hidden" name="colorId" value="@itemOffered.ColorId" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="product__details__price"> @Model.m.ItemPrice  JD</div>
+
+
+                            <div class="product__details__widget">
+                                <ul>
+                                    <li>
+
+                                        <div class="color__checkbox">
+                                            <label for="color__select"><b>Available color:</b></label>
+                                            @foreach (var itemOffered in Model.s)
+                                            {
+                                                <select id="color__select" name="color__select">
+
+                                                    <option value="@itemOffered.ColorId">@itemOffered.ColorName</option>
+
+
+                                                </select>
+                                                <input type="hidden" name="itemId" value="@itemOffered.ColorId" />
+                                            }
+                                        </div>
+                                    </li>
+                                    <li>
+
+                                        <div class="size__btn">
+                                            <label for="size__select"><b>Available size:</b></label>
+                                            <select id="size__select" name="size__select">
+                                                @foreach (var itemOffered in Model.z)
+                                                {
+                                                    <option value="@itemOffered.Size">@itemOffered.Size</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <br />
+
+
+
+
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </section>
+    </form>
+    <section class="product-reviews spad">
+        <div class="container">
+            <div class="comments-container">
+                <div class="slider">
+                    @if (Model.r != null && Model.r.Count > 0)
+                    {
+                        foreach (var review in Model.r)
+                        {
+                            <div class="comment-item">
+                                <h3>@review.Name</h3>
+                                <p>@review.Description</p>
+                                <span class="comment-item__post-date">Posted on @review.Date</span>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="form-container">
+                    <form method="post" action="@Url.Action("AddReview", "Home", new { id = Model.m.Item_Id, name = "" })">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" name="description" id="description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Review</button>
+                    </form>
+                </div>
+                <div class="slick-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .comments-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .comment-item {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 5px;
+            margin-right: 20px;
+            width: 400px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+
+            .comment-item h3 {
+                margin-top: 0;
+            }
+
+        .comment-item__post-date {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .slick-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+            .slick-dots li {
+                display: inline-block;
+                margin: 0 30px;
+            }
+
+                .slick-dots li button {
+                    font-size: 0;
+                    line-height: 0;
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    border: none;
+                    background-color: #ccc;
+                    cursor: pointer;
+                    outline: none;
+                }
+
+                .slick-dots li.slick-active button {
+                    background-color: #555;
+                }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            flex-basis: 48%;
+        }
+    </style>
+
+
+
+
+
+    <!-- Product Details Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.
+                        </p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="/ashion-master/img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+                dots: true
+            });
+        });
+    </script>
+
+    <script>
+        function updateQuantity() {
+            var selectedQuantity = document.getElementById("quantity-input").value;
+            document.getElementById("cart-quantity").value = selectedQuantity;
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

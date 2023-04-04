@@ -1,0 +1,223 @@
+﻿@model lubnamaster.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/register.css" type="text/css">
+</head>
+
+<body>
+
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+
+
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__right__auth" @*style="margin-right:30%;*@>
+
+                    </div>
+                    <div class="header__right">
+
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <section class="h-100 bg-dark">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card card-registration my-4">
+                        <div class="row g-0">
+                            <div class="col-xl-6 d-none d-xl-block">
+                                <img src="https://images.pexels.com/photos/1233648/pexels-photo-1233648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                     alt="Sample photo" class="img-fluid"
+                                     style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                            </div>
+
+                            <style>
+                                .p-md-5 {
+                                    padding: 0rem !important;
+                                }
+                                #edit {
+                                    margin-top: 20%;
+                                    margin-right: 20%;
+                                }
+                            </style>
+                            <div class="col-xl-6">
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    <form class="form contact_form" action="#" method="post">
+                                        <div class="card-body p-md-5 text-black" id="edit" >
+                                            <h3 class="mb-5 text-uppercase"> Create a new account.</h3>
+
+                                            <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control  form-control-lg ", placeholder = "FirstName", @id = "FirstName", @name = "FirstName" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-lg", placeholder = "LastName", @id = "LastName", @name = "LastName" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "Email" })
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Password" })
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-control-lg", placeholder = "ConfirmPassword" })
+                                            </div>
+
+
+                                            <div class="d-flex justify-content-end pt-3">
+
+                                                <button type="button" class="btn btn-warning btn-lg ms-2" style="background-color: burlywood; margin-right: 36%;">Create</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                }
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+</body>
+
+
+

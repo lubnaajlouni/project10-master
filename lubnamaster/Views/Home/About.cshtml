@@ -1,0 +1,381 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+
+
+    <meta name="author" content="" />
+    <!-- slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="~/tnio-1.0.0/css/bootstrap.css">
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href=" ~/tnio-1.0.0/css/style.css" rel="stylesheet" />
+  
+    <!-- responsive style -->
+    <link href="~/tnio-1.0.0/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+
+
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__right__auth" @*style="margin-right:30%;*@>
+
+                    </div>
+                    <div class="header__right">
+
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- about section -->
+    <style>
+        .h2, h4 {
+            font-family: Arial;
+        }
+
+       
+    </style>
+    <section class="about_section layout_padding">
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <div class="img-box" style=" margin-top: 7%;">
+                    <img src="https://images.pexels.com/photos/6567619/pexels-photo-6567619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                    <div class="play_btn-box">
+                        <div class="play-btn">
+                            <video width="640" height="360" controls>
+                                <source src="C:\Users\User-pc\Downloads\vedio\aboutus.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="detail-box">
+                    <h2>
+                        About Us
+                    </h2>
+                    <br />
+                    <h4>
+
+                        Welcome to our clothing store! We are a boutique located in the heart of Irbid , offering high-quality clothing for both men and women. Our store has been serving the community for years, providing the latest fashion trends and timeless classics.
+
+                    </h4>
+                    <br />
+                    <h4>
+                        As we continue to grow, we are excited to announce the launch of our online store. Now, customers can shop from the comfort of their own homes, while still receiving the same level of service and attention that they would receive in our physical store.
+
+                    </h4>
+                    <br />
+                    <h4>
+                        Shopping online has many benefits, including the ability to browse our entire selection of clothing without leaving your home. We offer a wide range of styles, from casual wear to formal attire, so there is something for everyone. Additionally, our online store provides a convenient and safe way to shop during these uncertain times.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- end about section -->
+    <!-- business section -->
+
+    <section class="business_section layout_padding" style="background-color: burlywood;">
+        <div class="container">
+            <h2>
+                Discover Your Shopping Experience
+            </h2>
+            <h4>
+                Welcome to our online store, where both men and women can find the latest and greatest clothing for all their shopping needs.
+            </h4>
+        </div>
+        <br />
+        <div class="card-container">
+            <div class="card">
+                <img src="../Images/men1.jpg" class="card-img-top" alt="...">
+             
+                <a href="@Url.Action("MEN", "Home")" class="card-link">View More</a>   
+            </div>
+            <div class="card">
+                <img src="../Images/women4.jpg" class="card-img-top" alt="...">
+                <a href="@Url.Action("WOMEN", "Home")" class="card-link"> View More</a>
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <br />
+      
+    </section>
+    
+ 
+
+    <style>
+        .card {
+            display: inline-block;
+            width: 400px;
+            margin: 20px;
+            position: relative;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-link {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ca1515;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+
+
+    <!-- end business section -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.
+                        </p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="/ashion-master/img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <script>
+        function openNav() {
+            document.getElementById("myNav").classList.toggle("menu_width");
+            document
+                .querySelector(".custom_menu-btn")
+                .classList.toggle("menu_btn-style");
+        }
+    </script>
+</body>
+</html>

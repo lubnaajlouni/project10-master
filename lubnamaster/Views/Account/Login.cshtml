@@ -1,0 +1,245 @@
+﻿@using lubnamaster.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/StyleSheet1.css" type="text/css">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+
+
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__right__auth" @*style="margin-right:30%;*@>
+
+                    </div>
+                    <div class="header__right">
+
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Section End -->
+
+    <style>
+        .social_icon span {
+            color: burlywood;
+        }
+
+        .input-group-prepend span {
+            background-color: burlywood;
+        }
+    </style>
+    <div class="container" style="height:0%;">
+        <div class="d-flex justify-content-center h-100">
+            <section id="loginForm" style="margin-top:20%;">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card" style=" height: 450px;">
+
+                        <div class="card-header">
+                            <h3>Sign In</h3>
+                            <div class="d-flex justify-content-end social_icon" style="color: #FFC312">
+                                <span><i class="fab fa-facebook-square" ></i></span>
+                                <span><i class="fab fa-google-plus-square"></i></span>
+                                <span><i class="fab fa-twitter-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "username" })
+                            </div>
+
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "password" })
+                            </div>
+
+                            <div class="row align-items-center remember">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+
+
+                            <div class="form-group" style="margin-top: 5%;">
+                                <input type="submit" value="Log in" class="btn float-right login_btn" style="margin-right: 35%; background-color: burlywood;">
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="card-footer" style="margin-top: 5%;">
+                            <div class="d-flex justify-content-center links">
+                                <p>
+                                    @Html.ActionLink("Register as a new user", "Register")
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+
+
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

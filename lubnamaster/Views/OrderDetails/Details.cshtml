@@ -1,0 +1,51 @@
+﻿@model lubnamaster.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Item_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderDetaileId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

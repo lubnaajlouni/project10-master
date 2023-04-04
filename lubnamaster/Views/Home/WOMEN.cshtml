@@ -1,0 +1,496 @@
+﻿@model IEnumerable<lubnamaster.Models.Item>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+
+
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__right__auth" @*style="margin-right:30%;*@>
+
+                    </div>
+                    <div class="header__right">
+
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip">2</div>
+                                </a>
+                            </li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 13vh; background-color: #ecd2e3;">
+                        <h1 style="text-align: center; font-size: 45px; font-weight: bold; font-family: emoji; ">Women Clothing</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Options</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        @*<div class="card-heading active">
+                            <a data-toggle="collapse" data-target="#collapseOne">Women</a>
+                        </div>*@
+                                        @*<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <ul>
+                                    <li><a href="#">Jackets</a></li>
+                                    <li><a href="#">Blouses</a></li>
+                                    <li><a href="#">Dresses</a></li>
+
+                                </ul>
+                            </div>
+                        </div>*@
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a data-toggle="collapse" data-target="#collapseTwo">Sections</a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+
+                                                    <li><a href="@Url.Action("WOMEN", new { categoryId = 1 })">Jackets</a></li>
+                                                    <li><a href="@Url.Action("WOMEN", new { categoryId = 9 })">Blouses</a></li>
+                                                    <li><a href="@Url.Action("WOMEN", new { categoryId = 8 })">Dresses</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="sidebar__sizes">
+                            <div class="section-title">
+                                <h4>Shop by size</h4>
+                            </div>
+                            <form id="size-form" action="@Url.Action("WOMEN")" method="get">
+                                <div class="size__list">
+                                    <label for="S">
+                                        <a href="#" onclick="submitSizeForm('S')">S</a>
+                                        <input type="checkbox" id="S" value="S">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label for="M">
+                                        <a href="#" onclick="submitSizeForm('M')">M</a>
+                                        <input type="checkbox" id="M" value="M">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label for="L">
+                                        <a href="#" onclick="submitSizeForm('L')">L</a>
+                                        <input type="checkbox" id="L" value="L">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label for="XL">
+                                        <a href="#" onclick="submitSizeForm('XL')">XL</a>
+                                        <input type="checkbox" id="Xl" value="XL">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="sidebar__color">
+                            <div class="section-title">
+                                <h4>Shop by color</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                <label for="black">
+                                    Blacks
+                                    <input type="checkbox" id="black">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="whites">
+                                    Whites
+                                    <input type="checkbox" id="whites">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="reds">
+                                    Reds
+                                    <input type="checkbox" id="reds">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="greys">
+                                    Greys
+                                    <input type="checkbox" id="greys">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="blues">
+                                    Blues
+                                    <input type="checkbox" id="blues">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="beige">
+                                    Beige Tones
+                                    <input type="checkbox" id="beige">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="greens">
+                                    Greens
+                                    <input type="checkbox" id="greens">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="yellows">
+                                    Yellows
+                                    <input type="checkbox" id="yellows">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="../Images/@item.Image1">
+
+                                        <ul class="product__hover">
+                                            <li><a href="../Images/@item.Image1" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <a href="@Url.Action("shopdetails", "Home" , new {id=item.Item_Id})">
+                                            <h6>@item.Item_Name</h6>
+                                        </a>
+                                        <div class="product__price">@item.ItemPrice JD</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.
+                        </p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="/ashion-master/img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+   <script>
+       function submitSizeForm(size) {
+           var form = document.getElementById("size-form");
+           var sizeInput = document.createElement("input");
+           sizeInput.setAttribute("type", "hidden");
+           sizeInput.setAttribute("name", "Size");
+           sizeInput.setAttribute("value", size);
+           form.appendChild(sizeInput);
+           form.submit();
+       }
+
+   </script>
+
+
+</body>
+</html>

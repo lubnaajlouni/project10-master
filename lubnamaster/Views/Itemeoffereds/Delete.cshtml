@@ -1,0 +1,65 @@
+﻿@model lubnamaster.Models.Itemeoffered
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Itemeoffered</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityLeft)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityLeft)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Item_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,633 @@
+﻿@model IEnumerable<lubnamaster.Models.Item>
+
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+</head>
+
+<body>
+    <style>
+        .header__right {
+            text-align: right;
+            margin-top: -5%;
+        }
+    </style>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="/Home/Home"><img src="~/img/masterlogo (1).png" style="width:40%" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>
+                                @Html.ActionLink("Women", "WOMEN", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Men", "MEN", "Home")
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("productdetails", "shopdetails", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("shopcart", "shopcart", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Checkout", "Checkout", "Home")
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <li><a href="../../Items/Index">Dashboard</a></li>
+                            }
+                        </ul>
+
+                    </nav>
+                </div>
+
+                <div class="col-lg-2 d-flex ">
+                    <div class="header__right">
+                        <ul class="header__right__widget">
+                            <li>
+                            <span class="icon_search search-switch"></span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__right__auth">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <style>
+        .header__right__widget li {
+            display: inline-block;
+            position: relative;
+        }
+
+            .header__right__widget li:first-child {
+                margin-right: 30px;
+            }
+
+            .header__right__widget li a {
+                font-size: 18px;
+                color: #111111;
+                display: block;
+                position: relative;
+            }
+
+            .header__right__widget li span {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        .header__right__auth {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+
+
+    </style>
+    <!-- Header Section End -->
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+                    <div class="categories__item categories__large__item set-bg"
+                         data-setbg="../Images/sshop1.jpg" style="object-fit: cover; ">
+                        <div class="categories__text">
+
+                            @*<h1 style="margin-top:40%;">Women’s fashion</h1>*@
+                            @*<p style="margin-top:40%;" >
+                                    Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
+                                    edolore magna aliquapendisse ultrices gravida.
+                                </p>*@
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" data-setbg="../Images/men1.jpg">
+                                <div class="categories__text">
+                                    <h4>Men’s fashion</h4>
+                                    <br />
+
+                                    <a href="@Url.Action("MEN", "Home")"> Shop now</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" data-setbg="../Images/women1.jpg">
+                                <div class="categories__text">
+                                    <h4>Women’s fashion</h4>
+                                    <br />
+                                    <a href="@Url.Action("WOMEN", "Home")"> Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+    <!-- Product Section Begin -->
+
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="section-title">
+                        <h4>New product</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">All</li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row property__gallery">
+                @foreach (var item in Model.Take(8)) // show only the first 8 items
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="/Images/@item.Image1">
+
+                                <ul class="product__hover">
+                                    <li><a href="/Images/@item.Image1" class="image-popup"><span class="arrow_expand"></span></a></li>
+
+                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <a href="@Url.Action("shopdetails", "Home" , new {id=item.Item_Id})">
+                                    <h6>@item.Item_Name</h6>
+                                </a>
+
+                                <div class="product__price">@item.ItemPrice JD</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <style>
+                    .site-btn {
+                        background-color: #CC9C75;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                    }
+
+                    .trend {
+                        padding-top: 120px;
+                    }
+
+                    .bottonlogin {
+                        font-size: 14px;
+                        color: #ffffff;
+                        background: #ca1515;
+                        font-weight: 600;
+                        border: none;
+                        text-transform: uppercase;
+                        display: inline-block;
+                        padding: 9px 20px;
+                        border-radius: 10px;
+                    }
+                </style>
+                <div class="col-lg-12 text-center">
+                    <a href="@Url.Action("Items", "Home")" class="site-btn">View More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <!-- Product Section End -->
+    <!-- Banner Section Begin -->
+    <section class="banner set-bg" data-setbg="/ashion-master/img/banner/banner-1.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-8 m-auto">
+                    <div class="banner__slider owl-carousel">
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1>Discover the Latest Fashion Trends </h1>
+
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1> From casual to formal wear</h1>
+
+
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1> we have you covered</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <!-- Banner Section End -->
+    <!-- Trend Section Begin -->
+
+
+
+
+
+    <br />
+    <br />
+    <!-- about section -->
+    <style>
+        .h2, h4 {
+            font-family: Arial;
+        }
+    </style>
+    <section class="about_section layout_padding">
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <div class="img-box">
+                    <img src="https://images.pexels.com/photos/6567619/pexels-photo-6567619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                </div>
+            </div>
+            <div class="col-md-6" style=" margin-top: 7%;">
+
+
+                <h2 style=" margin-left: 10%">About Us</h2>
+                <br />
+                <a href="@Url.Action("About", "Home")" style=" margin-left: 10%" class="site-btn">View More</a>
+            </div>
+        </div>
+    </section>
+    <br />
+    <br />
+    @*<div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="https://images.pexels.com/photos/6567619/pexels-photo-6567619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Your Image">
+                </div>
+                <div class="col-md-6">
+                    <h2>Heading</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales ex ac ipsum semper, eget consectetur neque ultricies. Fusce euismod, nisi in iaculis tristique, mauris odio mollis nisl, vel tincidunt felis felis nec ante.</p>
+                    <a href="@Url.Action("About", "Home")" class="site-btn">View More</a>
+                </div>
+            </div>
+        </div>*@
+
+
+    <!-- end about section -->
+    <!-- Trend Section End -->
+    <!-- Services Section Begin -->
+    <section class="services spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-car"></i>
+                        <h6>Free Shipping</h6>
+                        <p>For all oder over $99</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-money"></i>
+                        <h6>Money Back Guarantee</h6>
+                        <p>If good have Problems</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-support"></i>
+                        <h6>Online Support 24/7</h6>
+                        <p>Dedicated support</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-headphones"></i>
+                        <h6>Payment Secure</h6>
+                        <p>100% secure payment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                        <p class="fs-5 fw-bold text-white">Testimonial</p>
+                        <h1 class="display-5 mb-5" style="color:white">What Our Clients Say About Us!</h1>
+                        @using (Html.BeginForm("AddTestimonial", "Home", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <p class="mb-4" style="color:white">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Add your Feedback", rows = 6 })
+                            </p>
+                            <button type="submit" class="btn btn-primary py-3 px-4" style="background-color:darkred;border:none">Add</button>
+                        }
+                    </div>
+                    <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="owl-carousel testimonial-carousel" id="feedbackuser">
+                            @foreach (var review in Model.)
+                            {
+                                <div class="testimonial-item">
+                                    <p>@review.Description</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <!-- Instagram End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="~/ashion-master/index.html"><img src="/ashion-master/img/logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.
+                        </p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="/ashion-master/img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="/ashion-master/img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+
+    <script>
+        $(function () {
+            $('.cart-btn').click(function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest('form');
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: form.serialize(),
+                    success: function (data) {
+                        $('#cart-count').text(data.count);
+                    },
+                    error: function () {
+                        alert('Error adding item to cart');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
